@@ -1,13 +1,13 @@
 Django Soft Delete
 ============
 
-Django Soft Delete gives Django models the ability to soft delete or soft delete. it also gives the ability to restore or undelete soft-deleted instances.
+Django Soft Delete gives Django models the ability to soft delete(logical delete). it also gives the ability to restore or undelete soft-deleted instances.
 
 Basic usage
 ============
 
 1. Clone this repo and then ``$pip install django-soft-delete``
-1. Add softdelete model tho INSTALLED_APPS
+1. Add softdelete model to INSTALLED_APPS
 1. Inherit all models you want to have this functionality from softdelete.models.SoftDeleteModel
 
 Samples
@@ -15,6 +15,7 @@ Samples
 
 ```python
 from softdelete.models import SoftDeleteModel
+
 
 class MyModel(SoftDeleteModel):
     name = models.CharField(max_length=30)
@@ -26,15 +27,17 @@ You can also use the SoftDelete django manager to extends your custom manager fu
 #my_model_manager.py
 from softdelete.managers import SoftDeleteManager
 
+
 class MyModelManager(SoftDeleteManager):
 
     def create_john_smit(self):
         self.model.objects.create(name='Jonh Smith')
 
-#my_model.py
 
+#my_model.py
 from django.db import models
 from my_model_manager import MyModelManager
+
 
 class MyModel(SoftDeleteModel):
     name = models.CharField(max_length=30)
@@ -44,5 +47,9 @@ class MyModel(SoftDeleteModel):
 
 ```
 
+It's possible to have access to delete instances through an alternative manager `` raw_objects``
 
-
+```python
+    for inst in MyModel.raw_objects().all():
+        print inst.name
+```
