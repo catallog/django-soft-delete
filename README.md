@@ -50,6 +50,6 @@ class MyModel(SoftDeleteModel):
 It's possible to have access to delete instances through an alternative manager `` raw_objects``
 
 ```python
-    for inst in MyModel.raw_objects().all():
+    for inst in MyModel.raw_objects.all():
         print inst.name
 ```
