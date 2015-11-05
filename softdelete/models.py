@@ -31,7 +31,6 @@ class SoftDeleteModel(models.Model):
     def undelete(self):
         self.cascade_undelete()
 
-
     def soft_delete(self):
         self.deleted_at = timezone.now()
         self.save()
