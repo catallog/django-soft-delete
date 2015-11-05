@@ -6,8 +6,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from softdelete import managers
 from django.utils import timezone
+
+from softdelete.managers import SoftDeleteManager
 
 
 _call = lambda inst, method: hasattr(inst, method) and getattr(inst, method)()
@@ -15,7 +16,7 @@ _call = lambda inst, method: hasattr(inst, method) and getattr(inst, method)()
 
 class SoftDeleteModel(models.Model):
 
-    objects = managers.SoftDeleteManager()
+    objects = SoftDeleteManager()
     raw_objects = models.Manager()
 
     deleted_at = models.DateTimeField(null=True, blank=True)
@@ -50,14 +51,10 @@ class SoftDeleteModel(models.Model):
         self.chain_action('undelete')
         self.soft_undelete()
 
-
     def chain_action(self, method_name):
         for relation in self._meta.get_all_related_objects():
-            accessor = relation.get_accessor_name()
-            related_instances = getattr(self, accessor, None)
-            if related_instances:
-                if issubclass(related_instances.__class__, SoftDeleteModel):
-                    _call(related_instances, method_name)
-                elif hasattr(related_instances, 'raw_all'):
-                    for indirect in related_instances.raw_all().filter(**{ accessor: self}):
-                        _call(indirect, method_name)
+            accessor_name = relation.get_accessor_name()
+            acessor = getattr(self, accessor_name, None)
+            if acessor:
+                if issubclass(acessor.__class__, (SoftDeleteModel, SoftDeleteManager,)):
+                    _call(acessor, method_name)

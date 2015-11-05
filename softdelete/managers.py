@@ -14,6 +14,10 @@ class SoftDeleteQueryMixin(object):
         for model_instance in self.all():
             model_instance.delete()
 
+    def undelete(self):
+        for model_instance in self.raw_all():
+            model_instance.undelete()
+
 
 class SoftDeleteQuerySet(SoftDeleteQueryMixin, QuerySet):
     pass
