@@ -25,6 +25,9 @@ class SoftDeleteModel(models.Model):
         abstract = True
 
 
+    def is_deleted(self):
+        return self.deleted_at is not None
+
     def delete(self, *args, **kwargs):
         self.cascade_delete()
 
