@@ -10,6 +10,27 @@ Basic usage
 1. Add softdelete model to INSTALLED_APPS
 1. Inherit all models you want to have this functionality from softdelete.models.SoftDeleteModel
 
+```bash
+
+>>> MyModel.objects.create(name='Anakin')
+>>> MyModel.objects.create(name='Luke')
+>>> MyModel.objects.create(name='Yoda')
+
+>>> luke  = MyModel.objecs.filter(name='Luke')
+>>> MyModel.objecs.filter(name='Luke').delete()
+
+>>> MyModel.objecs.count()
+2
+
+>>> MyModel.raw_objecs.count()
+3
+
+>>> MyModel.objects.get(id=luke.id).undelete()
+>>> MyModel.objecs.count()
+3
+
+```
+
 Samples
 ============
 
@@ -30,7 +51,7 @@ from softdelete.managers import SoftDeleteManager
 
 class MyModelManager(SoftDeleteManager):
 
-    def create_john_smit(self):
+    def create_john_smith(self):
         self.model.objects.create(name='Jonh Smith')
 
 
