@@ -131,10 +131,13 @@ class SoftDeleteTestCase(TestCase):
         self._assert_count(4, 5)
 
         mod = TestModel.objects.get(name='Name_A')
+
+        self.assertTrue(mod.is_deleted())
         self.assertTrue(issubclass(mod.__class__, TestModel))
         self._assert_count(4, 5)
 
         mod.undelete()
+        self.assertFalse(mod.is_deleted())
         self._assert_count(5)
 
     def test_cascade_delete(self):
