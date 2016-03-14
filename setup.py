@@ -10,6 +10,7 @@ def read(*parts):
     with codecs.open(filename, encoding="utf-8") as fp:
         return fp.read()
 
+install_requires = open('requirements.txt').read().split('\n')
 
 setup(
     author="Collabo Software Ltda",
@@ -21,6 +22,7 @@ setup(
     url="https://www.collabo.com.br/",
     license="MIT",
     packages=find_packages(),
+    install_requires=install_requires,
     package_data={
         "models": []
     },
