@@ -5,6 +5,9 @@
 
 from __future__ import unicode_literals
 
+import os
+
+
 SECRET_KEY = 'nosecret'
 
 INSTALLED_APPS = [
