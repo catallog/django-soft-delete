@@ -7,6 +7,9 @@ services: postgresql
 
 env:
   - DJANGO=1.9
+  - DJANGO=1.8
+  - TEST_DATABASE=sqlite3
+  - TEST_DATABASE-postgres
 
 before_install:
   - export DJANGO_SETTINGS_MODULE=tests.settings

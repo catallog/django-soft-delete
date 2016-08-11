@@ -88,21 +88,13 @@ class SoftDeleteTestCase(TestCase):
         mod.delete()
         self._assert_count(4, 5)
 
-        mod = TestModel.objects.get(id='2')
-        mod.delete()
-        self._assert_count(3, 5)
-
     def test_model_hard_deletion(self):
         mod = TestModel.raw_objects.filter(name='Name_A').last()
         mod.hard_delete()
         self._assert_count(4)
 
-        mod = TestModel.raw_objects.get(id='2')
-        mod.hard_delete()
-        self._assert_count(3)
-
     def test_manager_softdelete(self):
-        TestModel.objects.filter(id=2).delete()
+        TestModel.objects.filter(name='Name_B').delete()
         self._assert_count(4, 5)
 
         TestModel.objects.last().delete()
