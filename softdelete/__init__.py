@@ -4,6 +4,3 @@
 # @Link    : http://www.collabo.com.br/
 
 from __future__ import unicode_literals
-
-from .managers import SoftDeleteManager
-from .models import SoftDeleteModel

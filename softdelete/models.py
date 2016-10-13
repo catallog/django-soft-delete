@@ -53,8 +53,15 @@ class SoftDeleteModel(models.Model):
         self.chain_action('undelete')
         self.soft_undelete()
 
+    def get_all_related_objects(self):
+        return (
+            f for f in self._meta.get_fields()
+            if (f.one_to_many or f.one_to_one)
+            and f.auto_created and not f.concrete
+        )
+
     def chain_action(self, method_name):
-        for relation in self._meta.get_all_related_objects():
+        for relation in self.get_all_related_objects():
             accessor_name = relation.get_accessor_name()
             acessor = getattr(self, accessor_name, None)
             if acessor:
