@@ -3,7 +3,10 @@
 # @Author  : Rafael Fernandes (basask@collabo.com.br)
 # @Link    : http://www.collabo.com.br/
 
-from __future__ import unicode_literals
+from __future__ import (
+    print_function,
+    unicode_literals
+)
 
 import os
 
@@ -16,7 +19,7 @@ INSTALLED_APPS = [
 
 if 'TRAVIS' in os.environ:
     database = os.environ.get('TEST_DATABASE')
-    print "Testing in:", database
+    print("Testing in: {}".format(database))
     if database == 'postgres':
         DATABASES = {
             'default': {
