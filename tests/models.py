@@ -23,18 +23,18 @@ class TestRegularModel(NameMixin):
 
 
 class TestOneToMany(NameMixin, SoftDeleteModel):
-    ref = models.OneToOneField(TestModel, null=False, blank=False)
+    ref = models.OneToOneField(TestModel, on_delete=models.CASCADE, null=False, blank=False)
 
 
 class TestManyToMany(NameMixin, SoftDeleteModel):
-    rigth = models.ForeignKey(TestModel, related_name='rigth', null=False, blank=False)
-    left = models.ForeignKey(TestModel, related_name='left', null=False, blank=False)
+    rigth = models.ForeignKey(TestModel, on_delete=models.CASCADE, related_name='rigth', null=False, blank=False)
+    left = models.ForeignKey(TestModel, on_delete=models.CASCADE, related_name='left', null=False, blank=False)
 
 
 class TestNoSubclassReference(NameMixin):
-    ref = models.OneToOneField(TestModel, null=False, blank=False)
+    ref = models.OneToOneField(TestModel, on_delete=models.CASCADE, null=False, blank=False)
 
 
 class TestMixedM2MModel(NameMixin, SoftDeleteModel):
-    regular = models.ForeignKey(TestRegularModel, null=False, blank=False)
-    soft = models.ForeignKey(TestModel, null=False, blank=False)
+    regular = models.ForeignKey(TestRegularModel, on_delete=models.CASCADE, null=False, blank=False)
+    soft = models.ForeignKey(TestModel, on_delete=models.CASCADE, null=False, blank=False)
