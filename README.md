@@ -24,14 +24,14 @@ Basic usage
 >>> luke  = MyModel.objecs.filter(name='Luke')
 >>> MyModel.objecs.filter(name='Luke').delete()
 
->>> MyModel.objecs.count()
+>>> MyModel.objects.count()
 2
 
->>> MyModel.raw_objecs.count()
+>>> MyModel.raw_objects.count()
 3
 
 >>> MyModel.objects.get(id=luke.id).undelete()
->>> MyModel.objecs.count()
+>>> MyModel.objects.count()
 3
 
 ```
