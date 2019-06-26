@@ -14,11 +14,11 @@ install_requires = open('requirements.txt').read().split('\n')
 
 setup(
     author="Collabo Software Ltda",
-    author_email="basask@collabo.com.br",
+    author_email="thomas@collabo.com.br",
     description="Abstraction to logical/soft delete in django models",
     name="soft-delete",
     long_description=read("README.md"),
-    version="0.1",
+    version="0.2.0",
     url="https://www.collabo.com.br/",
     license="MIT",
     packages=find_packages(),
@@ -35,6 +35,7 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 3",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ]
 )
