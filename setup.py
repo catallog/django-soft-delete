@@ -18,10 +18,10 @@ setup(
     description="Abstraction to logical/soft delete in django models",
     name="soft-delete",
     long_description=read("README.md"),
-    version="0.2.0",
+    version="0.2.1",
     url="https://www.collabo.com.br/",
     license="MIT",
-    packages=find_packages(),
+    packages=find_packages(exclude=("tests",)),
     install_requires=install_requires,
     package_data={
         "models": []

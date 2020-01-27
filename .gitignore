@@ -3,3 +3,4 @@
 .coverage
 coverage_annotate/
 dist/
+build/
