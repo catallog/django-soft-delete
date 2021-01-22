@@ -1,2 +1,2 @@
-coverage==4.0.3
+coverage>=4.0.3
 Django>=1.9
