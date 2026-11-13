@@ -12,7 +12,7 @@ Basic usage
 ============
 
 1. Clone this repo and then ``$pip install django-soft-delete``
-1. Add softdelete model to INSTALLED_APPS
+1. Add `django_softdelete` to INSTALLED_APPS
 1. Inherit all models you want to have this functionality from softdelete.models.SoftDeleteModel
 
 ```bash
